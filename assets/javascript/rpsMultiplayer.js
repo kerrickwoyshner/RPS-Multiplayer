@@ -29,15 +29,15 @@ function win(userChoice, computerChoice) {
     result_p.innerHTML = convertToWord(userChoice) + " beats " + convertToWord(computerChoice) + ". YOU WIN!!!";
 }
 
-function lose() {
+function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerHTML = computerScore;
     userScore_span.innerHTML = userScore;
-    result_p.innerHTML = convertToWord(userChoice) + " beats " + convertToWord(computerChoice) + ". YOU WIN!!!";
+    result_p.innerHTML = convertToWord(userChoice) + " loses to " + convertToWord(computerChoice) + ". You lost...";
 }
 
-function draw() {
-
+function draw(userChoice, computerChoice) {
+    result_p.innerHTML = convertToWord(userChoice) + " matches " + convertToWord(computerChoice) + ". It's a draw!";
 }
 
 function game(userChoice) {
@@ -62,17 +62,9 @@ function game(userChoice) {
 }
 
 function main() {
-rock_div.addEventListener('click', function() {
-    game("r");
-});
-
-paper_div.addEventListener('click', function() {
-    game("p");
-});
-
-scissors_div.addEventListener('click', function() {
-    game("s");
-});
+rock_div.addEventListener('click', () => game("r"));
+paper_div.addEventListener('click', () => game("p"));
+scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
