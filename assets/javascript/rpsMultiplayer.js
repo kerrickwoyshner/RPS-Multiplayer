@@ -1,6 +1,20 @@
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+// Declaring firebase configuration
+var config = {
+    apiKey: "AIzaSyDwNjRZxA5mxXFvf4OaZ2xcsZk3cumBWYU",
+    authDomain: "rps-multiplayer-3a562.firebaseapp.com",
+    databaseURL: "https://rps-multiplayer-3a562.firebaseio.com",
+    projectId: "rps-multiplayer-3a562",
+    storageBucket: "",
+    messagingSenderId: "1035037079181"
+  };
+
+firebase.initialize(config);
+
 // Declaring constants
 var userScore = 0;
 var computerScore = 0;
+var database = firebase.database();
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
