@@ -69,13 +69,32 @@ img {
 
 .choices {
     text-align: center;
-    margin: 50px 0;
+    margin-top: 50px;
 }
 
 .choice {
     display: inline-block;
     border: 4px solid white;
     border-radius: 50%;
-    padding: 10px;
+    padding: 20px;
     margin: 0 20px;
+    transition: all 0.3s ease;
+}
+
+.choice:hover {
+    cursor: pointer;
+    background: red;
+}
+
+span {
+    text-align: center;
+}
+
+#action-message {
+    text-align: center;
+    color: white;
+    font-family: Asap, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
 }
