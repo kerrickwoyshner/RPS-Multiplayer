@@ -65,8 +65,8 @@ const scissors_div = document.getElementById("s");
 function changePlayer1Name() {
     $("#add-name").on("click", function(event) {
         event.preventDefault();
-        var a = $("#add-name").val().trim();
-        $(".player1-name").push(a);
+        var a = $("#name-input").val().trim();
+        $(".player1-name").text(a);
       });
 }
 
