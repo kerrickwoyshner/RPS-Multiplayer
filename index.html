@@ -5,35 +5,71 @@
   <title>Rock Paper Scissors Game</title>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Rock Paper Scissors</h1>
+        <h1>Rock, Paper, Scissors.. SHOOT!</h1>
     </header>
 
+
+
+
+
+
+    <form id="name-form">
+        <label for="name-input"></label>
+        <input type="text" id="name-input">
+        <!-- Button triggers new movie to be added -->
+        <input id="add-name" type="submit" value="Name">
+    </form>
+
+
+
+
+
+
     <div class="score-board">
-        <div id="user-label" class="badge">user</div>
-        <div id="computer-label" class="badge">comp</div>
+        <div id="user-label" class="badge">Player 1</div>
+        <div id="computer-label" class="badge">Player 2</div>
         <span id="user-score">0</span>:<span id="computer-score">0</span>
     </div>
 
-    <div class="result">
-        <p>Click a choice below and get ready to shoot!</p>
+    <div class="result"><p>Click a choice below and get ready to shoot!</p></div>
+
+    <br><br>
+
+    <div class="player1-choices">
+        <div class="player1-name">Player Name</div>
+        <div class="choices">
+            <div class="choice" id="r">
+                <img src="assets/images/rock.png" alt="">
+            </div>
+            <div class="choice" id="p">
+                <img src="assets/images/paper.png" alt="">
+            </div>
+            <div class="choice" id="s">
+                <img src="assets/images/scissors.jpeg" alt="">
+            </div>
+        </div>
     </div>
 
-    <div class="choices">
-        <div class="choice" id="r">
-            <img src="assets/images/rock.png" alt="">
-        </div>
-        <div class="choice" id="p">
-            <img src="assets/images/paper.png" alt="">
-        </div>
-        <div class="choice" id="s">
-            <img src="assets/images/scissors.jpeg" alt="">
+    <div class="player2-choices">
+            <div class="player2-name">Player Name</div>
+        <div class="choices">
+            <div class="choice" id="r">
+                <img src="assets/images/rock.png" alt="">
+            </div>
+            <div class="choice" id="p">
+                <img src="assets/images/paper.png" alt="">
+            </div>
+            <div class="choice" id="s">
+                <img src="assets/images/scissors.jpeg" alt="">
+            </div>
         </div>
     </div>
-
-    <p id="action-message">Make your move</p>
+    
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 <script src="assets/javascript/rpsMultiplayer.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>

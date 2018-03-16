@@ -21,6 +21,30 @@ header > h1 {
     font-family: Asap, sans-serif;
 }
 
+form {
+    position: relative;
+    margin: 20px auto;
+    width: 200px;
+    color: white;
+    font-size: 46px;
+    font-family: Asap, sans-serif;
+    align-content: center;
+    text-align: center;
+}
+
+#movie-form {
+    width: 400px;
+}
+
+#name-input {
+    height: 25px;
+    width: 100px;
+}
+
+button {
+    padding: 10px;
+}
+
 .score-board {
     position: relative;
     margin: 20px auto;
@@ -28,8 +52,27 @@ header > h1 {
     width: 200px;
     color: white;
     font-size: 46px;
-    padding: 15px 20px;
+    padding: 20px 20px;
     font-family: Asap, sans-serif;
+    text-align: center;
+}
+
+.player1-choices {
+    float: left;
+}
+
+.player1-name {
+    text-align: center;
+    color: white;
+}
+
+.player2-choices {
+    float: right;
+}
+
+.player2-name {
+    text-align: center;
+    color: white;
 }
 
 img {
