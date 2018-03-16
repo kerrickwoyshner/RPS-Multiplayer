@@ -26,56 +26,53 @@ const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
 
-// On Click of rock
-//$(".r").on("click", function() {
-    //rockCounter++;
-    //database.ref().set({
-      //Rock: rockCounter
-    //});
-  //});
+//On Click of rock
+$(".r").on("click", function() {
+    rockCounter++;
+    database.ref().set({
+      Rock: rockCounter
+    });
+  });
 
-  // On Click of paper
-  // $(".p").on("click", function() {
-    // paperCounter++;
-    // database.ref().set({
-      //Paper: paperCounter
-    //});
-  //});
+//On Click of paper
+$(".p").on("click", function() {
+    paperCounter++;
+    database.ref().set({
+      Paper: paperCounter
+    });
+  });
 
-  // On Click of scissors
-  //$(".s").on("click", function() {
-    //scissorsCounter++;
-    //database.ref().set({
-      //Scissors: scissorsCounter
-    //});
-  //});
+//On Click of scissors
+$(".s").on("click", function() {
+    scissorsCounter++;
+    database.ref().set({
+      Scissors: scissorsCounter
+    });
+  });
 
-  //database.ref().on("value", function(snapshot) {
-    //console.log(snapshot.val());
-    //$(".r").text(snapshot.val().Rock);
-    //$(".p").text(snapshot.val().Paper);
-    //$(".s").text(snapshot.val().Scissors);
-    //rockCounter = snapshot.val().Rock;
-    //paperCounter = snapshot.val().Paper;
-    //scissorsCounter = snapshot.val().Scissors;
-  //}, function(errorObject) {
-    //console.log("The read failed: " + errorObject.code);
-  //});
+  database.ref().on("value", function(snapshot) {
+    console.log(snapshot.val());
+    $(".r").text(snapshot.val().Rock);
+    $(".p").text(snapshot.val().Paper);
+    $(".s").text(snapshot.val().Scissors);
+    rockCounter = snapshot.val().Rock;
+    paperCounter = snapshot.val().Paper;
+    scissorsCounter = snapshot.val().Scissors;
+  }, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
 
+//Change Player 1 Name
 function changePlayer1Name() {
     $("#add-name").on("click", function(event) {
         event.preventDefault();
         var a = $("#name-input").val().trim();
         $(".player1-name").text(a);
+        $(".user-badge").text(a);
       });
 }
 
 $("<button>").on("click",changePlayer1Name());
-
-
-//$("#name-input").on("value", function() {
-    //$(".player1-name").text("value".val());
-//})
 
 function getComputerChoice() {
     const choices = ['r', 'p', 's'];

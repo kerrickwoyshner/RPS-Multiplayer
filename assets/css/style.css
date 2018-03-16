@@ -34,6 +34,7 @@ form {
 
 #movie-form {
     width: 400px;
+    
 }
 
 #name-input {
@@ -80,7 +81,14 @@ img {
     width: 50px;
 }
 
-.badge {
+.user-badge {
+    background: #E25840;
+    color: white;
+    font-size: 14px;
+    font-family: Asap, sans-serif;
+}
+
+.computer-badge {
     background: #E25840;
     color: white;
     font-size: 14px;
