@@ -52,6 +52,17 @@ function addPlayerName() {
         else {
             event.preventDefault();
             var player2Name = $("#name-input").val().trim();
+            var rpsSelections = $("<div>").attr("#player2-choices");
+            var rockDiv = ("<div>").attr("#r");
+            var paperDiv = ("<div>").attr("#p");
+            var scissorsDiv = ("<div>").attr("#s");
+            rpsSelections.appendTo(".player2")
+            rockDiv.appendTo("#player2-choices")
+            paperDiv.appendTo("#player2-choices")
+            scissorsDiv.appendTo("#player2-choices")
+            $("#r").html("<img src='rock.png' />");
+            $("#p").html("<img src='paper.png' />");
+            $("#s").html("<img src='scissors.png' />");
             database.ref().push({
                 name: player2Name,
             });
