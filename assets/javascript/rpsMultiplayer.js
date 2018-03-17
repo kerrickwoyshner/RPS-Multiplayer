@@ -17,7 +17,7 @@ var rockCounter = 0;
 var paperCounter = 0;
 var scissorsCounter = 0;
 var player1 = "";
-var player2 = 0;
+var player2 = "";
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
@@ -27,11 +27,22 @@ const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
 
 //Assign Names
-function changePlayer1Name() {
+function addPlayerName() {
     $("#add-name").on("click", function(event) {
-        if ($(".player1-name") === "Waiting for Player 1") {
+        if ($("#name-input") === 'Waiting for Player 1') {
             event.preventDefault();
             var player1Name = $("#name-input").val().trim();
+            var rpsSelections = $("<div>").attr("#player1-choices");
+            var rockDiv = ("<div>").attr("#r");
+            var paperDiv = ("<div>").attr("#p");
+            var scissorsDiv = ("<div>").attr("#s");
+            rpsSelections.appendTo(".player1")
+            rockDiv.appendTo("#player1-choices")
+            paperDiv.appendTo("#player1-choices")
+            scissorsDiv.appendTo("#player1-choices")
+            $("#r").html("<img src='assets/images/rock.png' />");
+            $("#p").html("<img src='assets/images/paper.png' />");
+            $("#s").html("<img src='assets/images/scissors.png' />");
             database.ref().push({
                 name: player1Name,
             });
@@ -50,7 +61,7 @@ function changePlayer1Name() {
     });
 }
 
-$("<button>").on("click",changePlayer1Name());
+$("<button>").on("click",addPlayerName());
 
 //On Click of rock
 $(".r").on("click", function() {
@@ -77,7 +88,6 @@ $(".s").on("click", function() {
   });
 
   database.ref().on("value", function(snapshot) {
-    console.log(snapshot.val());
     $(".r").text(snapshot.val().Rock);
     $(".p").text(snapshot.val().Paper);
     $(".s").text(snapshot.val().Scissors);

@@ -58,7 +58,7 @@ button {
     text-align: center;
 }
 
-.player1-choices {
+.player1 {
     float: left;
     padding: 10px;
     border: 3px solid white;
@@ -67,9 +67,10 @@ button {
 .player1-name {
     text-align: center;
     color: white;
+    padding: 10px;
 }
 
-.player2-choices {
+.player2 {
     float: right;
     padding: 10px;
     border: 3px solid white;
@@ -78,6 +79,7 @@ button {
 .player2-name {
     text-align: center;
     color: white;
+    padding: 10px;
 }
 
 img {
