@@ -60,6 +60,8 @@ button {
 
 .player1-choices {
     float: left;
+    padding: 10px;
+    border: 3px solid white;
 }
 
 .player1-name {
@@ -69,6 +71,8 @@ button {
 
 .player2-choices {
     float: right;
+    padding: 10px;
+    border: 3px solid white;
 }
 
 .player2-name {

@@ -16,8 +16,8 @@ var database = firebase.database();
 var rockCounter = 0;
 var paperCounter = 0;
 var scissorsCounter = 0;
-var Player1 = 0;
-var Player2 = 0;
+var player1 = "";
+var player2 = 0;
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
@@ -25,6 +25,32 @@ const result_p = document.querySelector(".result > p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+
+//Assign Names
+function changePlayer1Name() {
+    $("#add-name").on("click", function(event) {
+        if ($(".player1-name") === "Waiting for Player 1") {
+            event.preventDefault();
+            var player1Name = $("#name-input").val().trim();
+            database.ref().push({
+                name: player1Name,
+            });
+            $(".player1-name").text(player1Name);
+            $(".user-badge").text(player1Name);
+        }
+        else {
+            event.preventDefault();
+            var player2Name = $("#name-input").val().trim();
+            database.ref().push({
+                name: player2Name,
+            });
+            $(".player2-name").text(player2Name);
+            $(".computer-badge").text(player2Name);
+        }
+    });
+}
+
+$("<button>").on("click",changePlayer1Name());
 
 //On Click of rock
 $(".r").on("click", function() {
@@ -62,18 +88,42 @@ $(".s").on("click", function() {
     console.log("The read failed: " + errorObject.code);
   });
 
-//Change Player 1 Name
-function changePlayer1Name() {
-    $("#add-name").on("click", function(event) {
-        event.preventDefault();
-        var a = $("#name-input").val().trim();
-        $(".player1-name").text(a);
-        $(".user-badge").text(a);
-      });
-}
 
-$("<button>").on("click",changePlayer1Name());
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // RPS Logic
 function getComputerChoice() {
     const choices = ['r', 'p', 's'];
     //random number generated from 0 -> 3
