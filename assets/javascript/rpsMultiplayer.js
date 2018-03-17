@@ -21,10 +21,6 @@ var player2 = "";
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
-const result_p = document.querySelector(".result > p");
-const rock_div = document.getElementById("r");
-const paper_div = document.getElementById("p");
-const scissors_div = document.getElementById("s");
 
 //Assign Names
 function addPlayerName() {
@@ -33,9 +29,9 @@ function addPlayerName() {
             event.preventDefault();
             var player1Name = $("#name-input").val().trim();
             var rpsSelections = $("<div>").attr("#player1-choices");
-            var rockDiv = ("<div>").attr("#r");
-            var paperDiv = ("<div>").attr("#p");
-            var scissorsDiv = ("<div>").attr("#s");
+            var rockDiv = $("<div>").attr("#r");
+            var paperDiv = $("<div>").attr("#p");
+            var scissorsDiv = $("<div>").attr("#s");
             rpsSelections.appendTo(".player1")
             rockDiv.appendTo("#player1-choices")
             paperDiv.appendTo("#player1-choices")
@@ -53,9 +49,9 @@ function addPlayerName() {
             event.preventDefault();
             var player2Name = $("#name-input").val().trim();
             var rpsSelections = $("<div>").attr("#player2-choices");
-            var rockDiv = ("<div>").attr("#r");
-            var paperDiv = ("<div>").attr("#p");
-            var scissorsDiv = ("<div>").attr("#s");
+            var rockDiv = $("<div>").attr("#r");
+            var paperDiv = $("<div>").attr("#p");
+            var scissorsDiv = $("<div>").attr("#s");
             rpsSelections.appendTo(".player2")
             rockDiv.appendTo("#player2-choices")
             paperDiv.appendTo("#player2-choices")
@@ -75,7 +71,7 @@ function addPlayerName() {
 $("<button>").on("click",addPlayerName());
 
 //On Click of rock
-$(".r").on("click", function() {
+$("#r").on("click", function() {
     rockCounter++;
     database.ref().set({
       Rock: rockCounter
@@ -83,7 +79,7 @@ $(".r").on("click", function() {
   });
 
 //On Click of paper
-$(".p").on("click", function() {
+$("#p").on("click", function() {
     paperCounter++;
     database.ref().set({
       Paper: paperCounter
@@ -91,7 +87,7 @@ $(".p").on("click", function() {
   });
 
 //On Click of scissors
-$(".s").on("click", function() {
+$("#s").on("click", function() {
     scissorsCounter++;
     database.ref().set({
       Scissors: scissorsCounter
@@ -99,9 +95,9 @@ $(".s").on("click", function() {
   });
 
   database.ref().on("value", function(snapshot) {
-    $(".r").text(snapshot.val().Rock);
-    $(".p").text(snapshot.val().Paper);
-    $(".s").text(snapshot.val().Scissors);
+    $("#r").text(snapshot.val().Rock);
+    $("#p").text(snapshot.val().Paper);
+    $("#s").text(snapshot.val().Scissors);
     rockCounter = snapshot.val().Rock;
     paperCounter = snapshot.val().Paper;
     scissorsCounter = snapshot.val().Scissors;
@@ -144,7 +140,12 @@ $(".s").on("click", function() {
 
 
 
-  // RPS Logic
+// RPS Logic
+const result_p = document.querySelector(".result > p");
+const rock_div = document.getElementById("r");
+const paper_div = document.getElementById("p");
+const scissors_div = document.getElementById("s");
+
 function getComputerChoice() {
     const choices = ['r', 'p', 's'];
     //random number generated from 0 -> 3
