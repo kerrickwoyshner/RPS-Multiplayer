@@ -25,45 +25,64 @@ const scoreboard_div = document.querySelector(".score-board");
 //Assign Names
 function addPlayerName() {
     $("#add-name").on("click", function(event) {
-        if ($("#name-input") === 'Waiting for Player 1') {
+        if ($('.player1-name').text() === 'Waiting for Player 1') {
             event.preventDefault();
-            var player1Name = $("#name-input").val().trim();
-            var rpsSelections = $("<div>").attr("#player1-choices");
-            var rockDiv = $("<div>").attr("#r");
-            var paperDiv = $("<div>").attr("#p");
-            var scissorsDiv = $("<div>").attr("#s");
-            rpsSelections.appendTo(".player1")
-            rockDiv.appendTo("#player1-choices")
-            paperDiv.appendTo("#player1-choices")
-            scissorsDiv.appendTo("#player1-choices")
-            $("#r").html("<img src='assets/images/rock.png' />");
-            $("#p").html("<img src='assets/images/paper.png' />");
-            $("#s").html("<img src='assets/images/scissors.png' />");
+            var player1Name = $('#name-input').val().trim();
             database.ref().push({
                 name: player1Name,
             });
             $(".player1-name").text(player1Name);
             $(".user-badge").text(player1Name);
+            var rpsSelectionsPlayer1 = $("<div>");
+            rpsSelectionsPlayer1.addClass("player1-choices").appendTo(".player1");
+            
+                rockDiv = $("<div>");
+                rockDiv.addClass("choice").appendTo(rpsSelectionsPlayer1);
+                rockDiv.attr('id',"r");
+                rockImage = $("<img src='player1images/rock.png'/>");
+                rockImage.appendTo(rockDiv);
+                
+                paperDiv = $("<div>");
+                paperDiv.addClass("choice").appendTo(rpsSelectionsPlayer1);
+                paperDiv.attr('id',"p");
+                paperImage = $("<img src='player1images/paper.png'/>");
+                paperImage.appendTo(paperDiv);
+                
+                scissorsDiv = $("<div>");
+                scissorsDiv.addClass("choice").appendTo(rpsSelectionsPlayer1);
+                scissorsDiv.attr('id',"s");
+                scissorsImage = $("<img src='player1images/scissors.jpeg'/>");
+                scissorsImage.appendTo(scissorsDiv);
         }
         else {
             event.preventDefault();
             var player2Name = $("#name-input").val().trim();
-            var rpsSelections = $("<div>").attr("#player2-choices");
-            var rockDiv = $("<div>").attr("#r");
-            var paperDiv = $("<div>").attr("#p");
-            var scissorsDiv = $("<div>").attr("#s");
-            rpsSelections.appendTo(".player2")
-            rockDiv.appendTo("#player2-choices")
-            paperDiv.appendTo("#player2-choices")
-            scissorsDiv.appendTo("#player2-choices")
-            $("#r").html("<img src='rock.png' />");
-            $("#p").html("<img src='paper.png' />");
-            $("#s").html("<img src='scissors.png' />");
+            console.log(player2Name);
             database.ref().push({
                 name: player2Name,
             });
             $(".player2-name").text(player2Name);
             $(".computer-badge").text(player2Name);
+            var rpsSelectionsPlayer2 = $("<div>");
+            rpsSelectionsPlayer2.addClass("player2-choices").appendTo(".player2");
+            
+                rockDiv = $("<div>");
+                rockDiv.addClass("choice").appendTo(rpsSelectionsPlayer2);
+                rockDiv.attr('id',"r");
+                rockImage = $("<img src='player2images/rock.png'/>");
+                rockImage.appendTo(rockDiv);
+                
+                paperDiv = $("<div>");
+                paperDiv.addClass("choice").appendTo(rpsSelectionsPlayer2);
+                paperDiv.attr('id',"p");
+                paperImage = $("<img src='player2images/paper.png'/>");
+                paperImage.appendTo(paperDiv);
+                
+                scissorsDiv = $("<div>");
+                scissorsDiv.addClass("choice").appendTo(rpsSelectionsPlayer2);
+                scissorsDiv.attr('id',"s");
+                scissorsImage = $("<img src='player2images/scissors.jpeg'/>");
+                scissorsImage.appendTo(scissorsDiv);
         }
     });
 }
@@ -199,9 +218,9 @@ function game(userChoice) {
 }
 
 function main() {
-rock_div.addEventListener('click', () => game("r"));
-paper_div.addEventListener('click', () => game("p"));
-scissors_div.addEventListener('click', () => game("s"));
+// rock_div.addEventListener('click', () => game("r"));
+//paper_div.addEventListener('click', () => game("p"));
+// scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
