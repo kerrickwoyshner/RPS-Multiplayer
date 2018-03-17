@@ -1,18 +1,20 @@
-var config = {
+  // Initialize Firebase
+  var config = {
     apiKey: "AIzaSyDwNjRZxA5mxXFvf4OaZ2xcsZk3cumBWYU",
     authDomain: "rps-multiplayer-3a562.firebaseapp.com",
     databaseURL: "https://rps-multiplayer-3a562.firebaseio.com",
     projectId: "rps-multiplayer-3a562",
-    storageBucket: "",
+    storageBucket: "rps-multiplayer-3a562.appspot.com",
     messagingSenderId: "1035037079181"
   };
-
-firebase.initializeApp(config);
+  firebase.initializeApp(config);
 
 // Declaring constants
 var userScore = 0;
 var computerScore = 0;
 var database = firebase.database();
+var connectionsRef = database.ref("/connections");
+var connectedRef = database.ref(".info/connected");
 var rockCounter = 0;
 var paperCounter = 0;
 var scissorsCounter = 0;
@@ -22,6 +24,13 @@ const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
 
+connectedRef.on("value", function(snap) {
+  if (snap.val()) {
+    var con = connectionsRef.push(true);
+    con.onDisconnect().remove();
+  }
+});
+
 //Assign Names
 function addPlayerName() {
     $("#add-name").on("click", function(event) {
@@ -29,7 +38,7 @@ function addPlayerName() {
             event.preventDefault();
             var player1Name = $('#name-input').val().trim();
             database.ref().push({
-                name: player1Name,
+                player:1, name: player1Name, wins:0, losses:0
             });
             $(".player1-name").text(player1Name);
             $(".user-badge").text(player1Name);
@@ -88,30 +97,6 @@ function addPlayerName() {
 }
 
 $("<button>").on("click",addPlayerName());
-
-//On Click of rock
-$("#r").on("click", function() {
-    rockCounter++;
-    database.ref().set({
-      Rock: rockCounter
-    });
-  });
-
-//On Click of paper
-$("#p").on("click", function() {
-    paperCounter++;
-    database.ref().set({
-      Paper: paperCounter
-    });
-  });
-
-//On Click of scissors
-$("#s").on("click", function() {
-    scissorsCounter++;
-    database.ref().set({
-      Scissors: scissorsCounter
-    });
-  });
 
   database.ref().on("value", function(snapshot) {
     $("#r").text(snapshot.val().Rock);
