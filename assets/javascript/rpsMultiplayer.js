@@ -1,10 +1,10 @@
 // checks databsase for player1 and player 2
-if there is a player under 1, you are player 2
+// if there is a player under 1, you are player 2
 // on window close, remove the player
 //reference to messages within firebase, may associate it with 
 
-on("click") for messages into console first, when messages changes, update the messages feed
-database.ref("messages").push("   input   ")
+// on("click") for messages into console first, when messages changes, update the messages feed
+// database.ref("messages").push("   input   ")
 
 // Initialize Firebase
   var config = {
@@ -82,8 +82,18 @@ function addPlayerName() {
         if ($('.player1-name').text() === 'Waiting for Player 1') {
             event.preventDefault();
             var player1Name = $('#name-input').val().trim();
-            database.ref("/players").child("1").set({
-                player:1, name: player1Name, wins:0, losses:0
+              // Creates key based on assigned player number
+            playerRef = database.ref("/players/" + "/player-" + playerNum);
+
+            // Creates player object. 'choice' is unnecessary here, but I left it in to be as complete as possible
+            playerRef.set({
+            name: username,
+            wins: 0,
+            losses: 0,
+            choice: null
+            });
+            database.ref("/players").child("player-1").set({
+                name: player1Name, wins:0, losses:0
             });
             $(".player1-name").text(player1Name);
             $(".user-badge").text(player1Name);
@@ -112,8 +122,8 @@ function addPlayerName() {
             event.preventDefault();
             var player2Name = $("#name-input").val().trim();
             console.log(player2Name);
-            database.ref().push({
-                player:1, name: player1Name, wins:0, losses:0
+            database.ref("/players").child("player-2").set({
+                name: player2Name, wins:0, losses:0
             });
             $(".player2-name").text(player2Name);
             $(".computer-badge").text(player2Name);
