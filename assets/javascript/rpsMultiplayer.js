@@ -1,4 +1,12 @@
-  // Initialize Firebase
+// checks databsase for player1 and player 2
+if there is a player under 1, you are player 2
+// on window close, remove the player
+//reference to messages within firebase, may associate it with 
+
+on("click") for messages into console first, when messages changes, update the messages feed
+database.ref("messages").push("   input   ")
+
+// Initialize Firebase
   var config = {
     apiKey: "AIzaSyDwNjRZxA5mxXFvf4OaZ2xcsZk3cumBWYU",
     authDomain: "rps-multiplayer-3a562.firebaseapp.com",
@@ -18,8 +26,6 @@ var connectedRef = database.ref(".info/connected");
 var rockCounter = 0;
 var paperCounter = 0;
 var scissorsCounter = 0;
-var player1 = "";
-var player2 = "";
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
@@ -31,13 +37,52 @@ connectedRef.on("value", function(snap) {
   }
 });
 
+connectionsRef.on("value", function(snap) {
+    $("#connected-viewers").text(snap.numChildren());
+  });
+
+
+// At the initial load, get a snapshot of the current data.
+database.ref("/players").on("value", function(snapshot) {
+    // If Firebase has a player1 and player2 stored (first case)
+    if (snapshot.child("player-1").exists() && snapshot.child("player-2").exists()) {
+        //logic to start a game
+        console.log(player-1);
+    }
+      // Set the initial variables for players equal to the stored values.
+      //player1 = snapshot.val().player-1;
+      //player2 = snapshot.val().player-2;
+
+    // Change the HTML to reflect the initial value
+    //$("#").text(snapshot.val().player-1);
+    //$("#").text("$" + snapshot.val().player-2);
+    // Print the initial data to the console.
+    //console.log(snapshot.val().highBidder);
+    //console.log(snapshot.val().highPrice);
+    else {
+        console.log("hello");
+    }
+      // Change the HTML to reflect the initial value
+      //$("#highest-bidder").text(highBidder);
+      //$("#highest-price").text("$" + highPrice);
+      // Print the initial data to the console.
+      //console.log("Current High Price");
+      //console.log(highBidder);
+      //console.log(highPrice);
+    //}
+  // If any errors are experienced, log them to console.
+  //}, function(errorObject) {
+    //console.log("The read failed: " + errorObject.code);
+});
+
+
 //Assign Names
 function addPlayerName() {
     $("#add-name").on("click", function(event) {
         if ($('.player1-name').text() === 'Waiting for Player 1') {
             event.preventDefault();
             var player1Name = $('#name-input').val().trim();
-            database.ref().push({
+            database.ref("/players").child("1").set({
                 player:1, name: player1Name, wins:0, losses:0
             });
             $(".player1-name").text(player1Name);
@@ -68,7 +113,7 @@ function addPlayerName() {
             var player2Name = $("#name-input").val().trim();
             console.log(player2Name);
             database.ref().push({
-                name: player2Name,
+                player:1, name: player1Name, wins:0, losses:0
             });
             $(".player2-name").text(player2Name);
             $(".computer-badge").text(player2Name);
