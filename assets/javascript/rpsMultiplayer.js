@@ -1,5 +1,3 @@
-// checks databsase for player1 and player 2
-// if there is a player under 1, you are player 2
 // on window close, remove the player
 //reference to messages within firebase, may associate it with 
 
@@ -41,13 +39,12 @@ connectionsRef.on("value", function(snap) {
     $("#connected-viewers").text(snap.numChildren());
   });
 
-
 // At the initial load, get a snapshot of the current data.
 database.ref("/players").on("value", function(snapshot) {
     // If Firebase has a player1 and player2 stored (first case)
     if (snapshot.child("player-1").exists() && snapshot.child("player-2").exists()) {
         //logic to start a game
-        console.log(player-1);
+        console.log("player-1");
     }
       // Set the initial variables for players equal to the stored values.
       //player1 = snapshot.val().player-1;
@@ -75,6 +72,14 @@ database.ref("/players").on("value", function(snapshot) {
     //console.log("The read failed: " + errorObject.code);
 });
 
+// database.ref("/players").child("player-1").set({
+//     name: player1Name, wins:0, losses:0
+// });
+// puls value from input of chat, puts it into database.ref(
+//     // 
+//     pushes object with name, message, time: firebase.database.serverValue.TIMESTAMP, ID #: player's number
+// )
+// serverValue.TIMESTAMP
 
 //Assign Names
 function addPlayerName() {
@@ -82,18 +87,15 @@ function addPlayerName() {
         if ($('.player1-name').text() === 'Waiting for Player 1') {
             event.preventDefault();
             var player1Name = $('#name-input').val().trim();
-              // Creates key based on assigned player number
-            playerRef = database.ref("/players/" + "/player-" + playerNum);
-
-            // Creates player object. 'choice' is unnecessary here, but I left it in to be as complete as possible
+            playerNum = 1;
+            // Creates key based on assigned player number
+            playerRef = database.ref("/players/" + "player-" + playerNum);
+            // Creates player object.
             playerRef.set({
-            name: username,
+            name: player1Name,
             wins: 0,
             losses: 0,
-            choice: null
-            });
-            database.ref("/players").child("player-1").set({
-                name: player1Name, wins:0, losses:0
+            choice: null,
             });
             $(".player1-name").text(player1Name);
             $(".user-badge").text(player1Name);
@@ -121,9 +123,13 @@ function addPlayerName() {
         else {
             event.preventDefault();
             var player2Name = $("#name-input").val().trim();
-            console.log(player2Name);
-            database.ref("/players").child("player-2").set({
-                name: player2Name, wins:0, losses:0
+            playerNum = 2;
+            playerRef = database.ref("/players/" + "player-" + playerNum);
+            playerRef.set({
+                name: player2Name,
+                wins: 0,
+                losses: 0,
+                choices: null,
             });
             $(".player2-name").text(player2Name);
             $(".computer-badge").text(player2Name);
